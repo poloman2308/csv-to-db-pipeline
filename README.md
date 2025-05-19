@@ -28,33 +28,40 @@ csv_to_db_pipeline/
 ├── .env               # DB connection credentials (not committed)
 ├── .gitignore
 ├── requirements.txt
-└── README.md
+└── README.md```
 
 ---
 
 ## ⚙️ .env Format
 
+```
 DB_USER=dbt_user
 DB_PASSWORD=dbt_pass
 DB_NAME=ecommerce
 DB_HOST=localhost
-DB_PORT=5433
+DB_PORT=5433```
 
 ## 🖥️ Run Locally
 
-python etl/load_data.py --csv data/customers.csv --table raw_customers
+```
+python etl/load_data.py --csv data/customers.csv --table raw_customers```
 
 ## ▶️ API:
 
-python api/app.py
+```
+python api/app.py```
 
 ## Trigger with curl:
 
+```
 curl -X POST http://localhost:5000/load \
      -H "Content-Type: application/json" \
-     -d "{\"csv_path\": \"data/customers.csv\", \"table_name\": \"raw_customers\"}"
+     -d "{\"csv_path\": \"data/customers.csv\", \"table_name\": \"raw_customers\"}"```
 
-✍️ Author
-Derek Acevedo
-📍 GitHub
-📄 LinkedIn
+## ✍️ Author
+
+**Derek Acevedo**  
+📍 [GitHub](https://github.com/poloman2308)  
+📄 [LinkedIn](https://www.linkedin.com/in/derekacevedo86)
+
+
