@@ -41,15 +41,21 @@ DB_NAME=ecommerce
 DB_HOST=localhost
 DB_PORT=5433```
 
+---
+
 ## 🖥️ Run Locally
 
 ```
 python etl/load_data.py --csv data/customers.csv --table raw_customers```
 
+---
+
 ## ▶️ API:
 
 ```
 python api/app.py```
+
+---
 
 ## Trigger with curl:
 
@@ -57,6 +63,8 @@ python api/app.py```
 curl -X POST http://localhost:5000/load \
      -H "Content-Type: application/json" \
      -d "{\"csv_path\": \"data/customers.csv\", \"table_name\": \"raw_customers\"}"```
+
+---
 
 ## ✍️ Author
 
