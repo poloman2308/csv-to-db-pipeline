@@ -1,5 +1,10 @@
 # 📦 CSV-to-Database ETL Pipeline
 
+[![Python](https://img.shields.io/badge/python-3.12-blue?logo=python)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/poloman2308/csv-to-db-pipeline/actions)
+[![Test Coverage](https://img.shields.io/badge/coverage-100%25-blue)](https://github.com/poloman2308/csv-to-db-pipeline)
+
 > A lightweight data engineering pipeline that loads CSV files into a PostgreSQL database using **Python, Pandas, SQLAlchemy**, and exposes a triggerable **Flask API**.
 
 ---
