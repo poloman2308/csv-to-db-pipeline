@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: csv_etl_postgres
+    environment:
+      POSTGRES_USER: dbt_user
+      POSTGRES_PASSWORD: dbt_pass
+      POSTGRES_DB: ecommerce
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
