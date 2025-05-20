@@ -54,6 +54,8 @@ DB_PORT=5433
 
 ```
 python etl/load_data.py --csv data/customers.csv --table raw_customers
+python etl/load_data.py --csv data/orders.csv --table raw_orders
+python etl/load_data.py --csv data/products.csv --table raw_products
 ```
 
 ---
