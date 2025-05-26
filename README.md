@@ -38,7 +38,7 @@ csv_to_db_pipeline/
 
 ---
 
-## End-to-End Flow Diagram
+## 📊 End-to-End Flow Diagram
 
 ```mermaid
 flowchart LR
