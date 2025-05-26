@@ -38,6 +38,43 @@ csv_to_db_pipeline/
 
 ---
 
+## End-to-End Flow Diagram
+
+```mermaid
+flowchart LR
+  %% ---------- INGEST ----------
+  subgraph Ingest
+    C1[data/customers.csv] -->|CLI 🧩| L1[load_data.py<br/>--csv --table]
+    C2[data/orders.csv]   -->|API 🚀| API[/POST /load<br/>app.py/]
+  end
+
+  %% ---------- TRANSFORM & LOAD ----------
+  subgraph ETL Engine
+    L1 --> T1[Pandas<br/>clean/transform]
+    API --> T2[Pandas<br/>validate/normalize]
+    T1 --> DB[(PostgreSQL<br/>raw_customers)]
+    T2 --> DB
+  end
+
+  %% ---------- MONITORING ----------
+  subgraph Logging
+    L1 --> LOG1[(console.log 📋)]
+    API --> LOG2[(Flask log 📋)]
+  end
+
+  style C1 fill:#fffbe7,stroke:#444
+  style C2 fill:#fffbe7,stroke:#444
+  style L1 fill:#dde1ff,stroke:#444
+  style API fill:#dde1ff,stroke:#444
+  style T1 fill:#e7ffe7,stroke:#444
+  style T2 fill:#e7ffe7,stroke:#444
+  style DB fill:#ffe7e7,stroke:#444
+  style LOG1 fill:#e7f5ff,stroke:#444
+  style LOG2 fill:#e7f5ff,stroke:#444
+```
+
+---
+
 ## ⚙️ .env Format
 
 ```yaml
