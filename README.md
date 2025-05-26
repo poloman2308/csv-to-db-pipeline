@@ -75,6 +75,22 @@ flowchart LR
 
 ---
 
+## 📚 Component Glossary
+
+| Component           | Description                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| `data/*.csv`        | Raw CSV files containing structured data to ingest                                     |
+| `etl/load_data.py`  | CLI-driven ETL script that reads CSVs, transforms with Pandas, and loads to PostgreSQL |
+| `api/app.py`        | Flask-based REST API that triggers the same ETL pipeline via HTTP requests             |
+| `test_request.py`   | Script to test the API endpoint locally using `requests.post()`                        |
+| `.env`              | Stores database connection variables (`DB_USER`, `DB_PASS`, etc.)                      |
+| `requirements.txt`  | Python package dependencies for ETL and API                                            |
+| `PostgreSQL`        | Target database to persist ingested and transformed records                            |
+| `logging`           | Console and API logs to track ETL runs and errors                                      |
+| `Docker` (optional) | Containerized PostgreSQL setup for local development and testing                       |
+
+---
+
 ## ⚙️ .env Format
 
 ```yaml
@@ -131,6 +147,25 @@ docker run --name etl-postgres -e POSTGRES_USER=dbt_user -e POSTGRES_PASSWORD=db
   "message": "Loaded data/customers.csv into raw_customers"
 }
 ```
+
+---
+
+## 🚧 Future Enhancements
+
+Here are a few directions to expand and productionize this project:
+
+| Enhancement                     | Description                                                              |
+| ------------------------------- | ------------------------------------------------------------------------ |
+| 🕒 Schedule ETL Runs            | Use `cron`, `Airflow`, or `Prefect` to automate periodic ingestion       |
+| 🧪 Add Unit & Integration Tests | Use `pytest` to validate data types, transformations, and DB inserts     |
+| 📉 Data Validation Layer        | Add `pandera` or `great_expectations` for schema and quality checks      |
+| ☁️ Cloud Integration            | Push data to cloud databases (e.g., AWS RDS) or cloud storage (e.g., S3) |
+| 📊 Dashboarding                 | Connect PostgreSQL to BI tools like Power BI or Metabase                 |
+| 🐳 Full Dockerization           | Package API, ETL, and DB as containers using Docker Compose              |
+| 🧵 Parallel File Loading        | Enable concurrent CSV ingestion for large datasets                       |
+| ⛓️ Change Data Capture (CDC)    | Track and load only new/changed records from source files                |
+| 🔐 Role-Based Access            | Add auth to restrict API usage in production                             |
+| 🔁 Incremental Loads            | Add logic to detect and skip already-loaded rows                         |
 
 ---
 
