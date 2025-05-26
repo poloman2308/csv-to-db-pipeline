@@ -5,7 +5,7 @@
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/poloman2308/csv-to-db-pipeline/actions)
 [![Test Coverage](https://img.shields.io/badge/coverage-100%25-blue)](https://github.com/poloman2308/csv-to-db-pipeline)
 
-> A lightweight data engineering pipeline that loads CSV files into a PostgreSQL database using **Python, Pandas, SQLAlchemy**, and exposes a triggerable **Flask API**.
+A lightweight data engineering pipeline that loads CSV files into a PostgreSQL database using **Python, Pandas, SQLAlchemy**, and exposes a triggerable **Flask API**.
 
 ---
 
@@ -40,13 +40,14 @@ csv_to_db_pipeline/
 
 ## ⚙️ .env Format
 
-```
+```yaml
 DB_USER=dbt_user
 DB_PASSWORD=dbt_pass
 DB_NAME=ecommerce
 DB_HOST=localhost
 DB_PORT=5433
 ```
+> 🔐 This file should be excluded from Git (.gitignore).
 
 ---
 
@@ -60,20 +61,38 @@ python etl/load_data.py --csv data/products.csv --table raw_products
 
 ---
 
-## ▶️ API:
+## ▶️ Flask API:
 
-```
+```bash
 python api/app.py
 ```
 
 ---
 
-## Trigger with curl:
+## 🔁 Make a request:
 
 ```
 curl -X POST http://localhost:5000/load \
      -H "Content-Type: application/json" \
      -d "{\"csv_path\": \"data/customers.csv\", \"table_name\": \"raw_customers\"}"
+```
+
+---
+
+## 🐳 Optional: Start PostgreSQL via Docker
+
+```bash
+docker run --name etl-postgres -e POSTGRES_USER=dbt_user -e POSTGRES_PASSWORD=dbt_pass -e POSTGRES_DB=ecommerce -p 5433:5432 -d postgres:15
+```
+
+---
+
+## ✅ Example Response
+
+```json
+{
+  "message": "Loaded data/customers.csv into raw_customers"
+}
 ```
 
 ---
